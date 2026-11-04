@@ -5,7 +5,7 @@ import { modules } from '../../modules/catalog';
 import { roleNavigation } from '../../config/roleAccess';
 import { useStore } from '../../store';
 
-export const Sidebar: React.FC = () => {
+export const Sidebar: React.FC<{ onNavigate?: () => void }> = ({ onNavigate }) => {
   const { role, permissions } = useStore();
   const roleGroups = roleNavigation[role]
     .map((group) => ({
@@ -44,6 +44,7 @@ export const Sidebar: React.FC = () => {
                 <NavLink
                   key={item.path}
                   to={item.path}
+                  onClick={onNavigate}
                   className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
                 >
                   <Icon size={16} />
@@ -59,6 +60,7 @@ export const Sidebar: React.FC = () => {
             <h2 className="nav-group-label">Administration</h2>
             <NavLink
               to="/permissions"
+              onClick={onNavigate}
               className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
             >
               <ShieldCheck size={16} />
@@ -70,6 +72,7 @@ export const Sidebar: React.FC = () => {
           <h2 className="nav-group-label">Platform</h2>
           <NavLink
             to="/about"
+            onClick={onNavigate}
             className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
           >
             <Info size={16} />
