@@ -82,8 +82,8 @@ export const Cases: React.FC = () => {
     <div className="page">
       <div className="page-header">
         <div>
-          <p className="eyebrow">Orders, delivery incidents and disputes</p>
-          <h2>Order Operations</h2>
+          <p className="eyebrow">Applications, admissions and visa cases</p>
+          <h2>Applications & Visa Cases</h2>
         </div>
         <div className="header-actions">
           <button className="primary-button" type="button" disabled={!permissions.create} onClick={openNew}><Plus size={15} /> Log incident</button>
@@ -121,7 +121,7 @@ export const Cases: React.FC = () => {
                         </div>
                       </div>
                       <div>
-                        <div className="small-label">{order?.city ?? client?.city ?? 'SwiftKart'} · ₹{caseItem.valueINR.toLocaleString('en-IN')}</div>
+                        <div className="small-label">{order?.city ?? client?.city ?? 'StudyBridge'} · ₹{caseItem.valueINR.toLocaleString('en-IN')}</div>
                         <span className={`badge status-${caseItem.priority.toLowerCase()}`}>{caseItem.priority}</span>
                       </div>
                     </div>
@@ -134,7 +134,7 @@ export const Cases: React.FC = () => {
       </div>
 
       <section>
-        <div className="panel-header"><h3>Recent orders</h3><span className="small-label">{orders.length} fictional linked orders</span></div>
+        <div className="panel-header"><h3>Recent applications</h3><span className="small-label">{orders.length} fictional linked orders</span></div>
         <div className="table-shell">
           <table>
             <thead><tr><th>Order</th><th>Customer</th><th>Restaurant</th><th>Delivery partner</th><th>City</th><th>Order status</th><th>Total</th></tr></thead>

@@ -23,23 +23,23 @@ export const Reports: React.FC = () => {
     <div className="page">
       <div className="page-header">
         <div>
-          <p className="eyebrow">Commerce health across SwiftKart cities</p>
-          <h2>Orders & Performance Reports</h2>
+          <p className="eyebrow">Commerce health across StudyBridge cities</p>
+          <h2>Applications & Consultancy Reports</h2>
         </div>
       </div>
 
       <div className="stats-grid">
         <div className="card"><h3>Orders</h3><div className="metric-value">{orders.length}</div><div className="metric-sub">{delivered} delivered in the current sample</div></div>
-        <div className="card"><h3>GMV</h3><div className="metric-value">{money(gmv)}</div><div className="metric-sub">Gross merchandise value</div></div>
+        <div className="card"><h3>GMV</h3><div className="metric-value">{money(gmv)}</div><div className="metric-sub">Consultancy revenue</div></div>
         <div className="card"><h3>Delivery completion</h3><div className="metric-value">{onTimeRate}%</div><div className="metric-sub">Delivered of non-cancelled orders</div></div>
-        <div className="card"><h3>Average delivery ETA</h3><div className="metric-value">{avgDeliveryMinutes} min</div><div className="metric-sub">Across delivered orders</div></div>
+        <div className="card"><h3>Average application turnaround</h3><div className="metric-value">{avgDeliveryMinutes} min</div><div className="metric-sub">Across delivered orders</div></div>
         <div className="card"><h3>Cancellations</h3><div className="metric-value">{cancelled}</div><div className="metric-sub">{((cancelled / Math.max(orders.length, 1)) * 100).toFixed(1)}% of sample orders</div></div>
         <div className="card"><h3>Refund exposure</h3><div className="metric-value">{money(refundValue)}</div><div className="metric-sub">{refunds.length} customer refund requests</div></div>
       </div>
 
       <div className="panel-grid">
         <div className="panel">
-          <div className="panel-header"><h3>Orders by city</h3><span className="small-label">Order count</span></div>
+          <div className="panel-header"><h3>Applications by destination</h3><span className="small-label">Order count</span></div>
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={cityData} margin={{ top: 10, right: 12, left: -18, bottom: 0 }}>
@@ -53,7 +53,7 @@ export const Reports: React.FC = () => {
           </div>
         </div>
         <div className="panel">
-          <div className="panel-header"><h3>City GMV</h3><span className="small-label">Fictional order volume</span></div>
+          <div className="panel-header"><h3>Consultancy revenue by destination</h3><span className="small-label">Fictional order volume</span></div>
           <div className="list-stack">
             {cityData.sort((a, b) => b.gmv - a.gmv).map((city) => (
               <div className="row-item" key={city.city}><div><strong>{city.city}</strong><div className="small-label">{city.orders} orders</div></div><strong>{money(city.gmv)}</strong></div>

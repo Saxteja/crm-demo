@@ -11,7 +11,7 @@ const roles: Role[] = [
   'Consultant',
   'Documentation Executive',
   'Accounts Executive',
-  'Customer Support',
+  'Student Support',
 ];
 
 export const TopBar: React.FC = () => {
@@ -19,15 +19,15 @@ export const TopBar: React.FC = () => {
   const [profileOpen, setProfileOpen] = useState(false);
 
   const handleReset = () => {
-    localStorage.removeItem('swiftkart-crm-demo-v1');
+    localStorage.removeItem('study-abroad-crm-demo-v1');
     window.location.reload();
   };
 
   return (
     <div className="topbar-content">
       <div>
-        <p className="eyebrow">Food commerce operations</p>
-        <h1>SwiftKart</h1>
+        <p className="eyebrow">Study abroad consultancy</p>
+        <h1>StudyBridge</h1>
       </div>
 
       <div className="toolbar-group">

@@ -103,7 +103,7 @@ const prioritiesByRole: Record<Role, Priority[]> = {
   'Super Admin': [
     { id: 'sa-1', title: 'Review city margin variance', detail: 'Mumbai contribution margin is 1.8 pts below plan', level: 'High' },
     { id: 'sa-2', title: 'Approve weekly settlement batch', detail: '₹18.6L across 42 merchant partners', level: 'Normal' },
-    { id: 'sa-3', title: 'Resolve Bengaluru SLA alert', detail: 'On-time delivery dipped to 92% during lunch peak', level: 'Urgent' },
+    { id: 'sa-3', title: 'Resolve Bengaluru SLA alert', detail: 'Admission and visa progress dipped to 92% during lunch peak', level: 'Urgent' },
   ],
   'Business Owner': [
     { id: 'bo-1', title: 'Review partner settlement run', detail: '42 merchant payouts · ₹18.6L scheduled today', level: 'High' },
@@ -118,8 +118,8 @@ const prioritiesByRole: Record<Role, Priority[]> = {
   'Operations Manager': [
     { id: 'om-1', title: 'Assign 7 unassigned orders', detail: 'Oldest order waiting 8 minutes in Indiranagar', level: 'Urgent' },
     { id: 'om-2', title: 'Escalate delayed deliveries', detail: '12 orders currently beyond promised ETA', level: 'Urgent' },
-    { id: 'om-3', title: 'Review 5 SLA breaches', detail: '3 late pickups and 2 hand-off delays', level: 'High' },
-    { id: 'om-4', title: 'Follow up on incident reports', detail: '4 delivery incidents need an owner', level: 'Normal' },
+    { id: 'om-3', title: 'Review 5 Application deadline risks', detail: '3 late pickups and 2 hand-off delays', level: 'High' },
+    { id: 'om-4', title: 'Follow up on incident reports', detail: '4 admission and visa cases need an owner', level: 'Normal' },
   ],
   'Sales Executive': [
     { id: 'se-1', title: 'Follow up with Tandoor Tales', detail: 'Growth plan proposal · Mumbai · last contacted yesterday', level: 'High' },
@@ -150,7 +150,7 @@ const prioritiesByRole: Record<Role, Priority[]> = {
 
 const activityByRole: Record<Role, Activity[]> = {
   'Super Admin': [
-    { title: 'Weekly GMV crossed ₹82L', detail: 'Company-wide · 12 min ago', initials: 'BI', color: 'blue' },
+    { title: 'Consultancy fee target reached ₹82L', detail: 'Company-wide · 12 min ago', initials: 'BI', color: 'blue' },
     { title: 'Delhi NCR delivery SLA recovered to 93.4%', detail: 'City operations · 34 min ago', initials: 'OP', color: 'green' },
     { title: '42 merchant settlements prepared', detail: 'Accounts · 1 hr ago', initials: 'AC', color: 'orange' },
   ],
@@ -416,7 +416,7 @@ function makeDashboard(role: Role, data: ReturnType<typeof useStore.getState>): 
   const todayOrders = 18420;
   const activeOrders = orders.filter((item) => ['Placed', 'Preparing', 'Picked up'].includes(item.status));
   const merchantName = (id: string) => restaurantById.get(id)?.name ?? 'Restaurant partner';
-  const orderName = (id: string) => orderById.get(id)?.orderNumber ?? 'Order';
+  const orderName = (id: string) => orderById.get(id)?.orderNumber ?? 'Application';
 
   const sharedQuickActions = quickActionsByRole[role];
   const sharedPriorities = prioritiesByRole[role];
@@ -424,22 +424,22 @@ function makeDashboard(role: Role, data: ReturnType<typeof useStore.getState>): 
   const roleModels: Record<Role, Omit<DashboardModel, 'quickActions' | 'priorities' | 'activity'>> = {
     'Super Admin': {
       heading: 'Company command centre',
-      welcome: 'Good morning, Admin. SwiftKart is tracking ahead of its weekly order plan.',
+      welcome: 'Good morning, Admin. StudyBridge is tracking ahead of its weekly order plan.',
       location: 'All cities · National view',
       layout: 'executive',
       metrics: [
-        { label: 'GMV this week', value: '₹82.4L', detail: 'Across 18,420 orders', trend: '+12.8%', direction: 'up', icon: <HandCoins size={17} /> },
+        { label: 'Consultancy revenue this week', value: '₹82.4L', detail: 'Across 18,420 applications', trend: '+12.8%', direction: 'up', icon: <HandCoins size={17} /> },
         { label: 'Net platform revenue', value: '₹14.8L', detail: 'After promotions and refunds', trend: '+9.6%', direction: 'up', icon: <ArrowUpRight size={17} /> },
-        { label: 'Orders', value: number(todayOrders), detail: 'Across 8 active cities', trend: '+8.2%', direction: 'up', icon: <PackageCheck size={17} /> },
+        { label: 'Applications', value: number(todayOrders), detail: 'Across 8 active cities', trend: '+8.2%', direction: 'up', icon: <PackageCheck size={17} /> },
         { label: 'Active customers', value: '12,840', detail: '4,210 repeat customers', trend: '+6.1%', direction: 'up', icon: <Users size={17} /> },
-        { label: 'On-time delivery', value: '94.6%', detail: 'Target 95% · 0.4 pts gap', trend: '-0.4 pts', direction: 'down', icon: <Bike size={17} /> },
+        { label: 'Admission and visa progress', value: '94.6%', detail: 'Target 95% · 0.4 pts gap', trend: '-0.4 pts', direction: 'down', icon: <Bike size={17} /> },
         { label: 'Cancellation rate', value: '2.8%', detail: 'Below 3% threshold', trend: '-0.6 pts', direction: 'up', icon: <ArrowDownRight size={17} /> },
       ],
-      chart: { title: 'Business trends', subtitle: 'GMV in ₹ lakh · net revenue in ₹ lakh', type: 'area', data: weekTrend, series: [{ key: 'gmv', label: 'GMV (₹L)', color: '#2b6ef6' }, { key: 'revenue', label: 'Net revenue (₹L)', color: '#ee7625' }] },
+      chart: { title: 'Student recruitment and application trends', subtitle: 'Consultancy revenue and fee collections · ₹ lakh', type: 'area', data: weekTrend, series: [{ key: 'gmv', label: 'GMV (₹L)', color: '#2b6ef6' }, { key: 'revenue', label: 'Net revenue (₹L)', color: '#ee7625' }] },
       tables: [{
         title: 'City performance',
-        subtitle: 'Revenue and delivery health by market',
-        columns: ['City', 'Orders', 'Net revenue', 'On-time', 'Trend'],
+        subtitle: 'Applications and admissions by destination',
+        columns: ['City', 'Applications', 'Net revenue', 'On-time', 'Trend'],
         rows: cityPerformance.slice(0, 4).map((city) => [city.city, number(city.orders), money(city.revenue * 100000), `${city.onTime}%`, '↑ 4.2%']),
       }, {
         title: 'Employee performance',
@@ -451,23 +451,23 @@ function makeDashboard(role: Role, data: ReturnType<typeof useStore.getState>): 
     'Business Owner': {
       heading: 'Business health',
       welcome: 'Good morning. Retention and order value are both trending up this week.',
-      location: 'SwiftKart · All markets',
+      location: 'StudyBridge · All markets',
       layout: 'owner',
       metrics: [
         { label: 'Net revenue', value: '₹14.8L', detail: 'Net of promotions and refunds', trend: '+9.6%', direction: 'up', icon: <HandCoins size={17} /> },
-        { label: 'GMV', value: '₹82.4L', detail: '18,420 completed and active orders', trend: '+12.8%', direction: 'up', icon: <PackageCheck size={17} /> },
-        { label: 'Customer retention', value: '42.6%', detail: 'Repeat order rate this month', trend: '+3.4 pts', direction: 'up', icon: <Users size={17} /> },
+        { label: 'Consultancy revenue', value: '₹82.4L', detail: '18,420 completed and active orders', trend: '+12.8%', direction: 'up', icon: <PackageCheck size={17} /> },
+        { label: 'Student continuation rate', value: '42.6%', detail: 'Application completion rate this month', trend: '+3.4 pts', direction: 'up', icon: <Users size={17} /> },
         { label: 'Marketing ROI', value: '4.2×', detail: '₹4.20 GMV per ₹1 spent', trend: '+0.5×', direction: 'up', icon: <ArrowUpRight size={17} /> },
       ],
-      chart: { title: 'GMV and net revenue', subtitle: 'Daily trend · ₹ lakh', type: 'area', data: weekTrend, series: [{ key: 'gmv', label: 'GMV', color: '#2b6ef6' }, { key: 'revenue', label: 'Net revenue', color: '#ee7625' }] },
+      chart: { title: 'Consultancy revenue and fees', subtitle: 'Daily trend · ₹ lakh', type: 'area', data: weekTrend, series: [{ key: 'gmv', label: 'Consultancy revenue', color: '#2b6ef6' }, { key: 'revenue', label: 'Net revenue', color: '#ee7625' }] },
       tables: [{
-        title: 'Merchant settlement outlook',
+        title: 'Consultancy fee collection outlook',
         subtitle: 'Next payout window · 42 partners',
-        columns: ['Partner', 'City', 'Orders', 'Payout', 'Status'],
+        columns: ['Partner', 'City', 'Applications', 'Payout', 'Status'],
         rows: settlements.slice(0, 4).map((item) => [merchantName(item.restaurantId), restaurantById.get(item.restaurantId)?.city ?? '', number(item.ordersCount), money(item.amountINR), item.status]),
       }, {
         title: 'Campaign returns',
-        subtitle: 'Customer and restaurant growth',
+        subtitle: 'Student recruitment and applications',
         columns: ['Campaign', 'Spend', 'Attributed GMV', 'ROI'],
         rows: marketingCampaigns.slice(0, 3).map((campaign) => [campaign.name, money(campaign.spendINR), money(campaign.gmvINR), `${(campaign.gmvINR / campaign.spendINR).toFixed(1)}×`]),
       }],
@@ -482,14 +482,14 @@ function makeDashboard(role: Role, data: ReturnType<typeof useStore.getState>): 
         { label: 'Local revenue', value: '₹8.9L', detail: 'GMV across city zones', trend: '+5.8%', direction: 'up', icon: <HandCoins size={17} /> },
         { label: 'Delivery on-time', value: '95.1%', detail: 'Target 95% · on track', trend: '+1.2 pts', direction: 'up', icon: <Bike size={17} /> },
         { label: 'Active partners', value: '186', detail: '14 onboarding this month', icon: <Store size={17} /> },
-        { label: 'Cancellations', value: '2.4%', detail: '78 orders · mostly stock-outs', trend: '-0.3 pts', direction: 'up', icon: <ArrowDownRight size={17} /> },
+        { label: 'Withdrawn applications', value: '2.4%', detail: '78 orders · mostly stock-outs', trend: '-0.3 pts', direction: 'up', icon: <ArrowDownRight size={17} /> },
         { label: 'Open complaints', value: '6', detail: '2 require city escalation', icon: <Headset size={17} /> },
       ],
-      chart: { title: 'Today by hour', subtitle: 'Bengaluru orders · local time', type: 'bar', data: [{ hour: '9 AM', orders: 128 }, { hour: '10 AM', orders: 244 }, { hour: '11 AM', orders: 420 }, { hour: '12 PM', orders: 612 }, { hour: '1 PM', orders: 574 }, { hour: '2 PM', orders: 398 }, { hour: '3 PM', orders: 282 }], series: [{ key: 'orders', label: 'Orders', color: '#2b6ef6' }] },
+      chart: { title: 'Today by hour', subtitle: 'Bengaluru orders · local time', type: 'bar', data: [{ hour: '9 AM', orders: 128 }, { hour: '10 AM', orders: 244 }, { hour: '11 AM', orders: 420 }, { hour: '12 PM', orders: 612 }, { hour: '1 PM', orders: 574 }, { hour: '2 PM', orders: 398 }, { hour: '3 PM', orders: 282 }], series: [{ key: 'orders', label: 'Applications', color: '#2b6ef6' }] },
       tables: [{
-        title: 'Top restaurant partners',
+        title: 'University application outcomes',
         subtitle: 'Bengaluru performance today',
-        columns: ['Restaurant', 'Orders', 'Rating', 'Prep time', 'Health'],
+        columns: ['Restaurant', 'Applications', 'Rating', 'Prep time', 'Health'],
         rows: restaurants.filter((item) => item.city === 'Bengaluru').slice(0, 4).map((item, index) => [item.name, ['184', '152', '96', '74'][index], `★ ${item.avgRating}`, ['18 min', '21 min', '24 min', '19 min'][index], index === 2 ? 'Needs attention' : 'On track']),
       }],
     },
@@ -499,28 +499,28 @@ function makeDashboard(role: Role, data: ReturnType<typeof useStore.getState>): 
       location: 'City operations · Multi-city queue',
       layout: 'operations',
       metrics: [
-        { label: 'Active orders', value: '148', detail: '32 preparing · 116 in transit', icon: <PackageCheck size={17} /> },
-        { label: 'Delayed deliveries', value: '12', detail: 'Oldest delay 18 minutes', trend: '+3', direction: 'down', icon: <Clock3 size={17} /> },
-        { label: 'Unassigned orders', value: '7', detail: 'Needs rider assignment now', trend: '-2', direction: 'up', icon: <Users size={17} /> },
-        { label: 'Riders available', value: '36 / 42', detail: '6 currently on active trips', icon: <Bike size={17} /> },
-        { label: 'SLA breaches', value: '5', detail: '3 pickup · 2 hand-off', icon: <Clock3 size={17} /> },
+        { label: 'Active applications', value: '148', detail: '32 preparing · 116 in transit', icon: <PackageCheck size={17} /> },
+        { label: 'Admission / visa delays', value: '12', detail: 'Oldest delay 18 minutes', trend: '+3', direction: 'down', icon: <Clock3 size={17} /> },
+        { label: 'Applications awaiting counselor assignment', value: '7', detail: 'Needs rider assignment now', trend: '-2', direction: 'up', icon: <Users size={17} /> },
+        { label: 'Counselors available', value: '36 / 42', detail: '6 currently on active trips', icon: <Bike size={17} /> },
+        { label: 'Application deadline risks', value: '5', detail: '3 pickup · 2 hand-off', icon: <Clock3 size={17} /> },
         { label: 'Open incidents', value: number(cases.filter((item) => item.stage !== 'Resolved').length + 5), detail: '4 need an assigned owner', icon: <Building2 size={17} /> },
       ],
-      chart: { title: 'Live order status', subtitle: 'Current order queue', type: 'donut', data: [{ name: 'Preparing', value: 32 }, { name: 'On the way', value: 109 }, { name: 'Delayed', value: 12 }, { name: 'Unassigned', value: 7 }], series: [{ key: 'value', label: 'Orders', color: '#2b6ef6' }] },
+      chart: { title: 'Application and visa pipeline', subtitle: 'Current order queue', type: 'donut', data: [{ name: 'Preparing', value: 32 }, { name: 'On the way', value: 109 }, { name: 'Delayed', value: 12 }, { name: 'Unassigned', value: 7 }], series: [{ key: 'value', label: 'Applications', color: '#2b6ef6' }] },
       tables: [{
-        title: 'Priority order queue',
-        subtitle: 'Orders needing an operations decision',
-        columns: ['Order', 'City', 'Restaurant', 'Issue', 'Wait', 'Action'],
+        title: 'Priority application queue',
+        subtitle: 'Applications requiring counselor action',
+        columns: ['Application', 'City', 'Restaurant', 'Issue', 'Wait', 'Action'],
         rows: activeOrders.slice(0, 4).map((item, index) => [item.orderNumber, item.city, merchantName(item.restaurantId), ['Unassigned rider', 'Pickup running late', 'ETA exceeded', 'Restaurant prep delay'][index], `${8 + index * 3} min`, 'Review']),
       }, {
-        title: 'Delivery partner availability',
+        title: 'Counselor availability',
         subtitle: 'Fleet ready by city',
         columns: ['City', 'Available', 'On delivery', 'Off shift', 'Coverage'],
         rows: ['Bengaluru', 'Mumbai', 'Delhi', 'Hyderabad'].map((city, index) => [city, String([12, 8, 6, 5][index]), String([14, 11, 12, 9][index]), String([3, 4, 5, 2][index]), ['Good', 'Watch', 'Watch', 'Good'][index]]),
       }],
     },
     'Sales Executive': {
-      heading: 'Merchant acquisition',
+      heading: 'Student recruitment',
       welcome: 'Good morning, Sanjay. You are 74% to target with 5 days left in the month.',
       location: 'South & West partnerships',
       layout: 'sales',
@@ -530,7 +530,7 @@ function makeDashboard(role: Role, data: ReturnType<typeof useStore.getState>): 
         { label: 'Follow-ups due', value: '9', detail: '3 high-priority conversations', icon: <Clock3 size={17} /> },
         { label: 'Conversion rate', value: '28.4%', detail: 'Target 30% · +2.1 pts MoM', trend: '+2.1 pts', direction: 'up', icon: <ArrowUpRight size={17} /> },
       ],
-      chart: { title: 'Acquisition funnel', subtitle: 'Merchant prospects by pipeline stage', type: 'bar', data: [{ stage: 'New', value: 18 }, { stage: 'Contacted', value: 13 }, { stage: 'Qualified', value: 8 }, { stage: 'Onboarding', value: 5 }, { stage: 'Live', value: 3 }], series: [{ key: 'value', label: 'Prospects', color: '#ee7625' }] },
+      chart: { title: 'Acquisition funnel', subtitle: 'Student leads by application stage', type: 'bar', data: [{ stage: 'New', value: 18 }, { stage: 'Contacted', value: 13 }, { stage: 'Qualified', value: 8 }, { stage: 'Onboarding', value: 5 }, { stage: 'Live', value: 3 }], series: [{ key: 'value', label: 'Prospects', color: '#ee7625' }] },
       tables: [{
         title: 'Priority merchant pipeline',
         subtitle: 'Next conversations and onboarding milestones',
@@ -539,31 +539,31 @@ function makeDashboard(role: Role, data: ReturnType<typeof useStore.getState>): 
       }],
     },
     Consultant: {
-      heading: 'Partner success portfolio',
+      heading: 'Student counselling portfolio',
       welcome: 'Good morning, Ritika. 8 partner launches are in progress and 6 reviews are scheduled today.',
       location: 'Partner success · Bengaluru & Hyderabad',
       layout: 'consultant',
       metrics: [
-        { label: 'Assigned merchants', value: '24', detail: 'Across 2 operating cities', icon: <Store size={17} /> },
+        { label: 'Assigned students', value: '24', detail: 'Across 2 operating cities', icon: <Store size={17} /> },
         { label: 'Onboarding progress', value: '8', detail: '5 ready for launch this week', icon: <BadgeCheck size={17} /> },
         { label: 'Partner health', value: '92 / 100', detail: 'Portfolio average score', trend: '+4 pts', direction: 'up', icon: <ArrowUpRight size={17} /> },
         { label: 'Meetings today', value: '6', detail: '2 onboarding · 4 reviews', icon: <Clock3 size={17} /> },
       ],
       chart: { title: 'Partner service health', subtitle: 'Portfolio health by operating city', type: 'line', data: [{ city: 'Bengaluru', health: 88, sla: 93 }, { city: 'Hyderabad', health: 91, sla: 95 }, { city: 'Mumbai', health: 85, sla: 92 }, { city: 'Delhi', health: 89, sla: 94 }, { city: 'Chennai', health: 94, sla: 97 }], series: [{ key: 'health', label: 'Partner health', color: '#2b6ef6' }, { key: 'sla', label: 'Order SLA', color: '#16a078' }] },
       tables: [{
-        title: 'Merchant health & onboarding',
+        title: 'University and application progress',
         subtitle: 'Assigned portfolio · action needed on low scores',
         columns: ['Merchant', 'City', 'Stage', 'Health', 'Pending requirement'],
         rows: restaurants.slice(0, 5).map((item, index) => [item.name, item.city, item.partnerStatus, `${[94, 88, 91, 83, 76][index]}/100`, ['Menu photos', 'None', 'Bank proof', 'Operating hours', 'FSSAI certificate'][index]]),
       }],
     },
     'Documentation Executive': {
-      heading: 'Merchant verification queue',
+      heading: 'Student document verification queue',
       welcome: 'Good morning, Neha. Clear the FSSAI queue first to unblock three partner launches.',
       location: 'KYC and compliance · All cities',
       layout: 'documents',
       metrics: [
-        { label: 'Pending KYC', value: '18', detail: '9 FSSAI · 5 PAN · 4 GST', icon: <FileCheck2 size={17} /> },
+        { label: 'Documents pending verification', value: '18', detail: '9 FSSAI · 5 PAN · 4 GST', icon: <FileCheck2 size={17} /> },
         { label: 'Awaiting verification', value: number(documents.filter((item) => item.status === 'Pending').length + 9), detail: '4 items older than 24 hours', icon: <Clock3 size={17} /> },
         { label: 'Rejected documents', value: number(documents.filter((item) => item.status === 'Rejected').length + 2), detail: 'Resubmission requested', icon: <ArrowDownRight size={17} /> },
         { label: 'Agreements expiring', value: '5', detail: 'Renewal needed within 30 days', icon: <FileCheck2 size={17} /> },
@@ -571,28 +571,28 @@ function makeDashboard(role: Role, data: ReturnType<typeof useStore.getState>): 
       chart: { title: 'Verification queue', subtitle: 'Documents by review status', type: 'donut', data: [{ name: 'Verified', value: 64 }, { name: 'Pending', value: 18 }, { name: 'Rejected', value: 5 }], series: [{ key: 'value', label: 'Documents', color: '#2b6ef6' }] },
       tables: [{
         title: 'Priority verification queue',
-        subtitle: 'Merchant documents awaiting review',
+        subtitle: 'Student documents awaiting review',
         columns: ['Merchant', 'Document', 'City', 'Received', 'Status'],
         rows: documents.slice(0, 5).map((item, index) => [item.owner, item.title, item.city, `${index + 1}h ago`, item.status]),
       }],
     },
     'Accounts Executive': {
-      heading: 'Settlements & reconciliation',
+      heading: 'Consultancy fees & reconciliation',
       welcome: 'Good morning, Ishant. The current payout batch closes at 4:00 PM.',
       location: 'Finance operations · India',
       layout: 'accounts',
       metrics: [
-        { label: 'Merchant settlements', value: money(settlements.reduce((sum, item) => sum + item.amountINR, 0)), detail: `${settlements.length} prepared or historical batches`, icon: <HandCoins size={17} /> },
+        { label: 'Consultancy fees collected', value: money(settlements.reduce((sum, item) => sum + item.amountINR, 0)), detail: `${settlements.length} prepared or historical batches`, icon: <HandCoins size={17} /> },
         { label: 'Invoices pending', value: number(settlements.filter((item) => item.status !== 'Paid').length + invoices.filter((item) => !item.paid && item.invoiceType !== 'Merchant settlement').length), detail: `${money(invoices.filter((item) => !item.paid).reduce((sum, item) => sum + item.amountINR, 0))} awaiting payment`, icon: <FileCheck2 size={17} /> },
-        { label: 'Refunds to process', value: '7', detail: '₹24,680 customer refund value', icon: <ArrowDownRight size={17} /> },
+        { label: 'Visa cases requiring follow-up', value: '7', detail: '₹24,680 customer refund value', icon: <ArrowDownRight size={17} /> },
         { label: 'Reconciliation exceptions', value: '4', detail: '2 order · 2 settlement variance', icon: <Clock3 size={17} /> },
         { label: 'Outstanding balance', value: '₹12.4L', detail: 'Across merchant and ad invoices', icon: <HandCoins size={17} /> },
       ],
-      chart: { title: 'Settlement batch progress', subtitle: 'Partner payout amount by status · ₹ lakh', type: 'bar', data: (['Prepared', 'Approved', 'Paid', 'Processing', 'Due'] as const).map((status) => ({ status, amount: settlements.filter((item) => item.status === status).reduce((sum, item) => sum + item.amountINR, 0) / 100000 })), series: [{ key: 'amount', label: '₹ lakh', color: '#16a078' }] },
+      chart: { title: 'Consultancy fee collection', subtitle: 'Partner payout amount by status · ₹ lakh', type: 'bar', data: (['Prepared', 'Approved', 'Paid', 'Processing', 'Due'] as const).map((status) => ({ status, amount: settlements.filter((item) => item.status === status).reduce((sum, item) => sum + item.amountINR, 0) / 100000 })), series: [{ key: 'amount', label: '₹ lakh', color: '#16a078' }] },
       tables: [{
-        title: 'Merchant settlement register',
+        title: 'Consultancy fee register',
         subtitle: 'Next payout window · 01–15 Nov',
-        columns: ['Partner', 'Orders', 'Gross sales', 'Settlement', 'Status'],
+        columns: ['Partner', 'Applications', 'Gross sales', 'Settlement', 'Status'],
         rows: settlements.slice(0, 5).map((item) => [merchantName(item.restaurantId), number(item.ordersCount), money(item.amountINR * 1.19), money(item.amountINR), item.status]),
       }, {
         title: 'Reconciliation exceptions',
@@ -602,7 +602,7 @@ function makeDashboard(role: Role, data: ReturnType<typeof useStore.getState>): 
       }],
     },
     'Customer Support': {
-      heading: 'Customer care desk',
+      heading: 'Student support desk',
       welcome: 'Good morning, Ravi. Your response time is 6 minutes and customer rating is 4.6 today.',
       location: 'Customer support · Live queue',
       layout: 'support',
@@ -611,14 +611,14 @@ function makeDashboard(role: Role, data: ReturnType<typeof useStore.getState>): 
         { label: 'Unresolved complaints', value: '9', detail: '4 delivery · 3 order · 2 payment', icon: <MessageSquareText size={17} /> },
         { label: 'Avg first response', value: '6 min', detail: 'SLA under 8 minutes', trend: '-2 min', direction: 'up', icon: <Clock3 size={17} /> },
         { label: 'Escalations', value: '3', detail: '2 city ops · 1 payments', icon: <ArrowUpRight size={17} /> },
-        { label: 'Customer rating', value: '4.6 / 5', detail: 'From 186 order ratings today', trend: '+0.2', direction: 'up', icon: <BadgeCheck size={17} /> },
+        { label: 'Student satisfaction', value: '4.6 / 5', detail: 'From 186 order ratings today', trend: '+0.2', direction: 'up', icon: <BadgeCheck size={17} /> },
         { label: 'Refund requests', value: '7', detail: `Pending value ${money(refunds.filter((item) => item.status === 'Pending').reduce((sum, item) => sum + item.amountINR, 0) + 24320)}`, icon: <HandCoins size={17} /> },
       ],
-      chart: { title: 'Customer conversation load', subtitle: 'Open customer cases by city', type: 'bar', data: [{ city: 'Bengaluru', tickets: 8 }, { city: 'Mumbai', tickets: 6 }, { city: 'Delhi', tickets: 5 }, { city: 'Hyderabad', tickets: 4 }, { city: 'Other', tickets: 5 }], series: [{ key: 'tickets', label: 'Open tickets', color: '#2b6ef6' }] },
+      chart: { title: 'Student support ticket load', subtitle: 'Open customer cases by city', type: 'bar', data: [{ city: 'Bengaluru', tickets: 8 }, { city: 'Mumbai', tickets: 6 }, { city: 'Delhi', tickets: 5 }, { city: 'Hyderabad', tickets: 4 }, { city: 'Other', tickets: 5 }], series: [{ key: 'tickets', label: 'Open tickets', color: '#2b6ef6' }] },
       tables: [{
-        title: 'Priority customer tickets',
+        title: 'Priority student support tickets',
         subtitle: 'Oldest and escalated conversations first',
-        columns: ['Customer', 'Order', 'Issue', 'City', 'Waiting', 'Priority'],
+        columns: ['Customer', 'Application', 'Issue', 'City', 'Waiting', 'Priority'],
         rows: feedbackEntries.slice(0, 5).map((item, index) => [item.customer, orderName(item.orderId), item.category, item.city, `${[11, 9, 7, 5, 3][index]} min`, index < 2 ? 'High' : 'Normal']),
       }],
     },
@@ -742,7 +742,7 @@ export const Dashboard: React.FC = () => {
           <h2>{model.heading}</h2>
           <p className="dashboard-welcome">{model.welcome}</p>
         </div>
-        <div className="dashboard-user-chip"><span className="dashboard-user-avatar">{role.split(' ').map((part) => part[0]).join('').slice(0, 2)}</span><span><strong>{role}</strong><small>SwiftKart demo workspace</small></span></div>
+        <div className="dashboard-user-chip"><span className="dashboard-user-avatar">{role.split(' ').map((part) => part[0]).join('').slice(0, 2)}</span><span><strong>{role}</strong><small>StudyBridge demo workspace</small></span></div>
       </div>
       <RoleDashboardView model={model} completed={completed} onComplete={togglePriority} onAction={handleAction} notice={notice} />
     </div>

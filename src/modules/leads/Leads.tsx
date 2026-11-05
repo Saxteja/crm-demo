@@ -12,7 +12,7 @@ const initialForm = {
   phone: '',
   city: '',
   cuisine: '',
-  source: 'Merchant referral',
+  source: 'School counselor referral',
   valueINR: '',
 };
 
@@ -81,19 +81,19 @@ export const Leads: React.FC = () => {
     setForm(initialForm);
     setFormError('');
     setShowModal(false);
-    setSuccessMessage(`${name} was added to the merchant pipeline.`);
+    setSuccessMessage(`${name} was added to the student enquiry pipeline.`);
   };
 
   return (
     <div className="page">
       <div className="page-header">
         <div>
-          <p className="eyebrow">Restaurant and merchant acquisition</p>
-          <h2>Merchant Leads</h2>
+          <p className="eyebrow">Student enquiry and recruitment</p>
+          <h2>Student Leads</h2>
         </div>
         <div className="header-actions">
           <button className="primary-button" type="button" disabled={!permissions.create} title={!permissions.create ? 'Your role does not have Create permission' : undefined} onClick={() => { setSuccessMessage(''); setShowModal(true); }}>
-            <Plus size={15} /> Add merchant lead
+            <Plus size={15} /> Add student enquiry
           </button>
         </div>
       </div>
@@ -103,7 +103,7 @@ export const Leads: React.FC = () => {
       <div className="toolbar">
         <div className="search-box">
           <Search size={16} color="#667085" />
-          <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search restaurant, cuisine or city" />
+          <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search student, program or city" />
         </div>
 
         <select value={status} onChange={(e) => setStatus(e.target.value)} className="control-inline">
@@ -117,7 +117,7 @@ export const Leads: React.FC = () => {
         <table>
           <thead>
             <tr>
-              <th>Restaurant prospect</th>
+              <th>Student lead</th>
               <th>Cuisine</th>
               <th>City</th>
               <th>Contact</th>
@@ -157,19 +157,19 @@ export const Leads: React.FC = () => {
           <section className="modal-card lead-modal" role="dialog" aria-modal="true" aria-labelledby="add-lead-title" onClick={(event) => event.stopPropagation()}>
             <form onSubmit={handleAddLead} noValidate>
               <div className="modal-head">
-                <h3 id="add-lead-title">Add merchant lead</h3>
+                <h3 id="add-lead-title">Add student enquiry</h3>
                 <button className="icon-button" type="button" aria-label="Close dialog" onClick={() => setShowModal(false)}>×</button>
               </div>
               <div className="modal-body">
-                <p className="small-label">Add a restaurant or merchant prospect to the SwiftKart acquisition pipeline.</p>
+                <p className="small-label">Add a student prospect to the StudyBridge acquisition pipeline.</p>
                 <div className="form-grid">
-                  <label className="field"><span>Restaurant / merchant name *</span><input autoFocus value={form.name} onChange={(event) => updateForm('name', event.target.value)} /></label>
+                  <label className="field"><span>Student name *</span><input autoFocus value={form.name} onChange={(event) => updateForm('name', event.target.value)} /></label>
                   <label className="field"><span>Contact email *</span><input type="email" value={form.email} onChange={(event) => updateForm('email', event.target.value)} /></label>
                   <label className="field"><span>Phone *</span><input type="tel" value={form.phone} onChange={(event) => updateForm('phone', event.target.value)} /></label>
                   <label className="field"><span>City *</span><input value={form.city} onChange={(event) => updateForm('city', event.target.value)} /></label>
-                  <label className="field"><span>Cuisine / category *</span><input value={form.cuisine} onChange={(event) => updateForm('cuisine', event.target.value)} /></label>
-                  <label className="field"><span>Lead source</span><select value={form.source} onChange={(event) => updateForm('source', event.target.value)}><option>Merchant referral</option><option>Outbound sales</option><option>Website</option><option>Food expo</option><option>Campaign</option></select></label>
-                  <label className="field"><span>Expected monthly opportunity (₹) *</span><input type="number" min="0" step="1" value={form.valueINR} onChange={(event) => updateForm('valueINR', event.target.value)} /></label>
+                  <label className="field"><span>Course / program *</span><input value={form.cuisine} onChange={(event) => updateForm('cuisine', event.target.value)} /></label>
+                  <label className="field"><span>Lead source</span><select value={form.source} onChange={(event) => updateForm('source', event.target.value)}><option>School counselor referral</option><option>Education outreach</option><option>Website</option><option>Education fair</option><option>Campaign</option></select></label>
+                  <label className="field"><span>Expected consultancy fee (₹) *</span><input type="number" min="0" step="1" value={form.valueINR} onChange={(event) => updateForm('valueINR', event.target.value)} /></label>
                 </div>
                 {formError && <p className="form-feedback form-feedback-error" role="alert">{formError}</p>}
               </div>

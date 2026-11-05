@@ -39,7 +39,7 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
       <aside className="sidebar-panel"><Sidebar /></aside>
       {drawerOpen && <button className="drawer-backdrop" aria-label="Close navigation" onClick={() => setDrawerOpen(false)} />}
       <aside className={`mobile-drawer ${drawerOpen ? 'is-open' : ''}`} aria-label="Navigation drawer" aria-hidden={!drawerOpen}>
-        <div className="mobile-drawer-head"><strong>SwiftKart menu</strong><button className="icon-button" type="button" aria-label="Close navigation" onClick={() => setDrawerOpen(false)}><X size={18} /></button></div>
+        <div className="mobile-drawer-head"><strong>StudyBridge menu</strong><button className="icon-button" type="button" aria-label="Close navigation" onClick={() => setDrawerOpen(false)}><X size={18} /></button></div>
         <Sidebar onNavigate={() => setDrawerOpen(false)} />
       </aside>
 
@@ -49,7 +49,7 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
           <TopBar />
         </header>
         <main className="content-panel">{children}</main>
-        <footer className="app-attribution-footer">SwiftKart CRM — Powered by <strong>SoftIntellTech</strong></footer>
+        <footer className="app-attribution-footer">StudyBridge CRM — Powered by <strong>SoftIntellTech</strong></footer>
       </div>
     </div>
   );

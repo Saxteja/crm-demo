@@ -155,8 +155,8 @@ export const Invoices: React.FC = () => {
     <div className="page">
       <div className="page-header">
         <div>
-          <p className="eyebrow">Merchant finance and customer transactions</p>
-          <h2>Settlements, Refunds & Payments</h2>
+          <p className="eyebrow">Consultancy fees and student payments</p>
+          <h2>Consultancy Fees & Payments</h2>
         </div>
         <div className="header-actions">
           <button className="primary-button" type="button" disabled={!permissions.create} onClick={openSettlement}><Plus size={15} /> Prepare settlement</button>
@@ -247,7 +247,7 @@ export const Invoices: React.FC = () => {
       </section>
 
       <section>
-        <div className="panel-header"><h3>Recent order payments</h3><span className="small-label">Simulated payment records · no real processing</span></div>
+        <div className="panel-header"><h3>Recent consultancy fee payments</h3><span className="small-label">Simulated payment records · no real processing</span></div>
         <div className="table-shell">
           <table>
             <thead><tr><th>Order</th><th>Customer</th><th>Method</th><th>Amount</th><th>Paid at</th><th>Status</th></tr></thead>

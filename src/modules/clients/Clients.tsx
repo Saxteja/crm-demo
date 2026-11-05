@@ -34,7 +34,7 @@ export const Clients: React.FC = () => {
       ...form,
       id: uuid(),
       name: form.name.trim(),
-      contactEmail: form.contactEmail.trim() || 'hello@swiftkart.example',
+      contactEmail: form.contactEmail.trim() || 'hello@studybridge.example',
       contactPhone: form.contactPhone.trim(),
       totalOrders: 0,
       lifetimeValueINR: 0,
@@ -61,8 +61,8 @@ export const Clients: React.FC = () => {
     <div className="page">
       <div className="page-header">
         <div>
-          <p className="eyebrow">Customer and partner directory</p>
-          <h2>Customers & Merchants</h2>
+          <p className="eyebrow">Student and university directory</p>
+          <h2>Students & Universities</h2>
         </div>
         <button className="primary-button" type="button" disabled={!permissions.create} title={!permissions.create ? 'Your role does not have Create permission' : undefined} onClick={() => setShowModal(true)}>
           <Plus size={15} /> Add directory record
@@ -105,7 +105,7 @@ export const Clients: React.FC = () => {
         <div className="modal-backdrop" onClick={() => setShowModal(false)}>
           <div className="modal-card" onClick={(event) => event.stopPropagation()}>
             <div className="modal-head">
-              <h3>Add SwiftKart directory record</h3>
+              <h3>Add StudyBridge directory record</h3>
               <button className="icon-button" type="button" aria-label="Close dialog" onClick={() => setShowModal(false)}>×</button>
             </div>
             <div className="modal-body">

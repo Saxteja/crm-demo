@@ -10,8 +10,8 @@ export const Communications: React.FC = () => {
     <div className="page">
       <div className="page-header">
         <div>
-          <p className="eyebrow">Customer, merchant and fleet conversations</p>
-          <h2>Communications & Alerts</h2>
+          <p className="eyebrow">Student, university and visa communications</p>
+          <h2>Student Communications & Alerts</h2>
         </div>
         <button className="primary-button" type="button" disabled={!permissions.create} title={!permissions.create ? 'Your role does not have Create permission' : undefined}>Send broadcast</button>
       </div>

@@ -59,7 +59,7 @@ export const Documents: React.FC = () => {
   };
 
   const simulateDownload = (doc: DocumentItem) => {
-    const description = `SwiftKart demo document\nName: ${doc.title}\nFile: ${doc.fileName ?? doc.reference}\nThis is a local metadata preview; no uploaded file content is stored.`;
+    const description = `StudyBridge demo document\nName: ${doc.title}\nFile: ${doc.fileName ?? doc.reference}\nThis is a local metadata preview; no uploaded file content is stored.`;
     const link = document.createElement('a');
     link.href = URL.createObjectURL(new Blob([description], { type: 'text/plain' }));
     link.download = `${doc.title.replace(/[^a-z0-9-_]+/gi, '-')}-demo.txt`;

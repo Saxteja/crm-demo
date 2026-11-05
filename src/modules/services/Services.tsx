@@ -177,11 +177,11 @@ export const Services: React.FC = () => {
             </div>
           );
         })}
-        {services.length === 0 && <div className="empty-state">No packages in the catalogue. Create a SwiftKart merchant or delivery package.</div>}
+        {services.length === 0 && <div className="empty-state">No packages in the catalogue. Create a StudyBridge merchant or delivery package.</div>}
       </div>
 
       {showModal && (
-        <Modal title={editing ? 'Edit SwiftKart package' : 'Create SwiftKart package'} size="large" onClose={() => setShowModal(false)}>
+        <Modal title={editing ? 'Edit StudyBridge package' : 'Create StudyBridge package'} size="large" onClose={() => setShowModal(false)}>
           <form onSubmit={submitPackage}>
             <div className="modal-body">
               <div className="form-grid">

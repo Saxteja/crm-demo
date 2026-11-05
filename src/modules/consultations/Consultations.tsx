@@ -107,7 +107,7 @@ export const Consultations: React.FC = () => {
       <div className="page-header">
         <div>
           <p className="eyebrow">Restaurant partner success</p>
-          <h2>Merchant Onboarding & Meetings</h2>
+          <h2>Counselling Sessions</h2>
         </div>
         <div className="header-actions">
           <button className="primary-button" type="button" disabled={!permissions.create} onClick={openNew}>
@@ -164,7 +164,7 @@ export const Consultations: React.FC = () => {
                 <label className="field"><span>Time *</span><input type="time" value={form.time} onChange={(event) => setForm({ ...form, time: event.target.value })} /></label>
                 <label className="field"><span>Meeting type *</span><select value={form.meetingType} onChange={(event) => setForm({ ...form, meetingType: event.target.value })}>{meetingTypes.map((type) => <option key={type}>{type}</option>)}</select></label>
                 <label className="field"><span>Assigned employee *</span><select value={form.consultant} onChange={(event) => setForm({ ...form, consultant: event.target.value })}><option value="">Select employee</option>{employees.filter((item) => item.status !== 'Inactive').map((item) => <option key={item.id} value={item.name}>{item.name} · {item.role}</option>)}</select></label>
-                <label className="field full"><span>Location or meeting link *</span><input placeholder="SwiftKart Bengaluru office or https://meet.example/..." value={form.location} onChange={(event) => setForm({ ...form, location: event.target.value })} /></label>
+                <label className="field full"><span>Location or meeting link *</span><input placeholder="StudyBridge Bengaluru office or https://meet.example/..." value={form.location} onChange={(event) => setForm({ ...form, location: event.target.value })} /></label>
                 <label className="field full"><span>Notes</span><textarea rows={3} value={form.notes} onChange={(event) => setForm({ ...form, notes: event.target.value })} /></label>
               </div>
               {formError && <p className="form-feedback form-feedback-error" role="alert">{formError}</p>}

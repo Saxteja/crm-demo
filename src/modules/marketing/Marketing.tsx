@@ -12,20 +12,20 @@ export const Marketing: React.FC = () => {
     <div className="page">
       <div className="page-header">
         <div>
-          <p className="eyebrow">Customer acquisition and restaurant promotions</p>
+          <p className="eyebrow">Student recruitment and study abroad campaigns</p>
           <h2>Campaign Performance</h2>
         </div>
       </div>
 
       <div className="stats-grid">
-        <div className="card"><h3>Campaign orders</h3><div className="metric-value">{campaignOrders.toLocaleString('en-IN')}</div><div className="metric-sub">Orders attributed to current demos</div></div>
-        <div className="card"><h3>Campaign GMV</h3><div className="metric-value">₹{campaignGMV.toLocaleString('en-IN')}</div><div className="metric-sub">Gross order value attributed</div></div>
+        <div className="card"><h3>Campaign applications</h3><div className="metric-value">{campaignOrders.toLocaleString('en-IN')}</div><div className="metric-sub">Applications attributed to demo data</div></div>
+        <div className="card"><h3>Consultancy revenue</h3><div className="metric-value">₹{campaignGMV.toLocaleString('en-IN')}</div><div className="metric-sub">Consultancy fees attributed</div></div>
         <div className="card"><h3>Marketing spend</h3><div className="metric-value">₹{campaignSpend.toLocaleString('en-IN')}</div><div className="metric-sub">Fictional campaign budget</div></div>
       </div>
       <div className="panel-grid">
         <div className="panel">
           <div className="panel-header">
-            <h3>Orders by campaign</h3>
+            <h3>Applications by campaign</h3>
           </div>
           <div className="chart-wrap">
             <ResponsiveContainer width="100%" height="100%">

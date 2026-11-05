@@ -33,9 +33,9 @@ export const About: React.FC = () => (
       <section className="card about-detail-card">
         <div className="about-detail-icon about-tenant-icon"><Building2 size={18} /></div>
         <div>
-          <h3>SwiftKart demonstration tenant</h3>
+          <h3>StudyBridge demonstration tenant</h3>
           <p>
-            SwiftKart is the fictional client identity for this e-commerce demonstration. The CRM
+            StudyBridge is the fictional client identity for this study abroad consultancy demonstration. The CRM
             platform is provided by SoftIntellTech.
           </p>
         </div>
@@ -44,7 +44,7 @@ export const About: React.FC = () => (
 
     <div className="about-attribution">
       <span className="about-attribution-mark" aria-hidden="true">SI</span>
-      <span><strong>SwiftKart CRM</strong> — Powered by SoftIntellTech</span>
+      <span><strong>StudyBridge CRM</strong> — Powered by SoftIntellTech</span>
     </div>
   </div>
 );

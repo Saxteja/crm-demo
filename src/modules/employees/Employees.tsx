@@ -80,7 +80,7 @@ export const Employees: React.FC = () => {
       createdAt: editing?.createdAt ?? new Date().toISOString(),
     };
     setEmployees(editing ? employees.map((item) => item.id === employee.id ? employee : item) : [...employees, employee]);
-    setNotice(editing ? `${employee.name}'s profile was updated.` : `${employee.name} was added to the SwiftKart team.`);
+    setNotice(editing ? `${employee.name}'s profile was updated.` : `${employee.name} was added to the StudyBridge team.`);
     setShowModal(false);
     setFormError('');
     setSubmitting(false);
@@ -98,7 +98,7 @@ export const Employees: React.FC = () => {
       <div className="page-header">
         <div>
           <p className="eyebrow">City operations, merchant growth and support</p>
-          <h2>SwiftKart Teams</h2>
+          <h2>StudyBridge Teams</h2>
         </div>
         <div className="header-actions">
           <button className="primary-button" type="button" disabled={!permissions.create} onClick={openNew}><Plus size={15} /> Add member</button>
@@ -116,7 +116,7 @@ export const Employees: React.FC = () => {
               <span className={`badge ${employee.status === 'Inactive' ? 'status-pending' : 'status-done'}`}>{employee.status ?? 'Active'}</span>
             </div>
             <h3 title={employee.name}>{employee.name}</h3>
-            <div className="employee-role-label" title={`${employee.role} · ${employee.department ?? 'SwiftKart team'}`}>{employee.role} · {employee.department ?? 'SwiftKart team'}</div>
+            <div className="employee-role-label" title={`${employee.role} · ${employee.department ?? 'StudyBridge team'}`}>{employee.role} · {employee.department ?? 'StudyBridge team'}</div>
             <p className="metric-sub employee-card-copy" title={employee.email}>{employee.email}</p>
             <p className="metric-sub employee-card-copy">{employee.phone ?? 'Phone not listed'} · {employee.branch ?? employee.location}</p>
             <p className="small-label employee-card-copy">Employee ID · {employee.employeeId ?? employee.id}</p>
@@ -148,7 +148,7 @@ export const Employees: React.FC = () => {
       </section>
 
       {showModal && (
-        <Modal title={editing ? 'Edit employee profile' : 'Add SwiftKart team member'} size="large" onClose={() => setShowModal(false)}>
+        <Modal title={editing ? 'Edit employee profile' : 'Add StudyBridge team member'} size="large" onClose={() => setShowModal(false)}>
           <form onSubmit={submitEmployee}>
             <div className="modal-body">
               <div className="form-grid">

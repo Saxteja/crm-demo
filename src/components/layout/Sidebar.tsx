@@ -26,7 +26,7 @@ export const Sidebar: React.FC<{ onNavigate?: () => void }> = ({ onNavigate }) =
       <div className="brand-block">
         <div className="brand-mark">S</div>
         <div>
-          <div className="brand-name">SwiftKart</div>
+          <div className="brand-name">StudyBridge</div>
           <div className="brand-subtitle">E-commerce</div>
           <div className="brand-attribution">Powered by SoftIntellTech</div>
         </div>

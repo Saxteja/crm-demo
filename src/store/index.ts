@@ -378,7 +378,7 @@ export const useStore = create<StoreState>()(
       resetDemo: () => set({ ...emptyData(), role: 'Operations Manager', permissions: createDefaultRolePermissions() }),
     }),
     {
-      name: 'swiftkart-crm-demo-v1',
+      name: 'study-abroad-crm-demo-v1',
       version: 4,
       migrate: (persistedState, version) => {
         const state = persistedState as Partial<StoreState>;
